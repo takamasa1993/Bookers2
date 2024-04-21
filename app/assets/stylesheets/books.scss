@@ -1,0 +1,14 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.vertical-line {
+  border-left: 1px solid black;
+  height: 20px;
+  display: inline-block;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  }
+
+.form-control {
+  width: 100%;
+}

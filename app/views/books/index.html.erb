@@ -1,0 +1,38 @@
+<main>
+  <p id="notice"><%= flash[:notice] %></p>
+  <div class='container px-5'>
+    <div class='row'>
+      <div class='col-3'>
+        <%= render 'devise/shared/user_info' %>
+      </div>
+      
+      <div class='col-md-8 offset-md-1'>
+        <h2>Books</h2>
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <% @books.each do |book| %>
+                <tr>
+                  <td>
+                    <% if book.user.image.present? %>
+                      <%= image_tag book.user.image, width: "50px", height: "50px" %>
+                    <% else %>
+                      <%= image_tag 'default-image.jpg', width: "70px", height: "70px" %>
+                    <% end %>
+                  </td>
+                  <td><%= link_to book.title, book_path(book) %></td>
+                  <td><%= book.opinion %></td>
+                  <td colspan="3"></td>
+                </tr>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
