@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     if @book.save
       flash[:notice] = "You have created book successfully."
-      redirect_to user_book_path(current_user, @book)
+      redirect_to book_path(@book)
     else
       flash.now[:alert] = @book.errors.full_messages.join(", ")
       render :new
@@ -37,19 +37,22 @@ class BooksController < ApplicationController
   
   def index
     @books = Book.all
+    @book = Book.new
   end
   
   def show
     @book = Book.find(params[:id])
+    @book_new = Book.new
   end
   
   def edit
     @book = Book.find(params[:id])
+    @book = Book.new
   end
   
-   private
+  private
   
   def book_params
-    params.require(:book).permit(:title, :opinion)
+    params.require(:book).permit(:title, :body)
   end
 end
