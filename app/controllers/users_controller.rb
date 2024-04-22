@@ -5,20 +5,31 @@ class UsersController < ApplicationController
   end
 
   def show
-     @books = current_user.books
-     @book = Book.new
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
   end
 
   def edit
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(@user)
+    end
     @user = User.find(params[:id])
-    @book = Book.new
   end
   
   def update
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(@user)
+    end
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "User updated successfully."
+      @user.reload
+      flash[:success] = "You have updated user successfully！"
+      redirect_to user_path(@user)
     else
+      flash[:error] = "更新失敗。error"
       render :edit
     end
   end
@@ -26,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :image)
+    params.require(:user).permit(:name, :email, :password, :profile_image, :introduction)
   end
   
 end

@@ -1,9 +1,9 @@
-
+  <%= flash[:success] %>
   <h2>User info</h2>
   <table class='table'>
     <tr>
-      <% if current_user.image.present? %>
-        <%= image_tag current_user.image %>
+      <% if current_user.profile_image.present? %>
+        <%= image_tag current_user.profile_image.variant(resize: '100x100') %>
       <% else %>
         <%= image_tag 'default-image.jpg' %>
       <% end %>

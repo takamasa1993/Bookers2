@@ -18,15 +18,21 @@
             <tr>
               <td>
                 <%= link_to(user_path(@book.user)) do %>
-                  <%= image_tag @book.get_image %>
+                    <% if @book.user.profile_image.attached? %>
+                      <%= link_to image_tag(@book.user.profile_image, width: "50px", height: "50px"), user_path(@book.user) %>
+                    <% else %>
+                      <%= link_to image_tag('default-image.jpg', width: "70px", height: "70px"), user_path(@book.user) %>
+                    <% end %>
                 <% end %>
                 <br>
                 <%= link_to @book.user.name, user_path(@book.user) %>
               </td>
               <td><%= @book.title %></td>
               <td><%= @book.body %></td>
-              <td><%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-success' %></td>
-              <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+              <% if current_user.id == @book.user_id %>
+                <td><%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-success' %></td>
+                <td><%= link_to 'Destroy', book_path(@book), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+              <% end %>
           </tbody>
         </table>
       </div>
