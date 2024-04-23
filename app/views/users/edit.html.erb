@@ -1,5 +1,16 @@
+
 <div class="container">
   <div class="row justify-content-center">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2>エラーが発生しました:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="col-8">
       <h1 class="text-left">User info</h1>
 
