@@ -1,9 +1,9 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">
+      <%= link_to "/", class: "navbar-brand" do %>
         <span>Bookers</span>
-      </a>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,41 +12,49 @@
           
         <% if user_signed_in? %>
           <li>
-             <a class="nav-link text-light" href="<%= user_path(current_user) %>">
-              <i class="fas fa-home"></i>Home
-            </a>
+            <%= link_to user_path(current_user), class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-home") %> Home
+            <% end %>
           </li>
           <li>
-            <a class="nav-link text-light" href="/users">
-              <i class="fas fa-users"></i>Users
-            </a>
+            <%= link_to "/users", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-users") %> Users
+            <% end %>
           </li>
           <li>
-            <a class="nav-link text-light" href="/books">
-              <i class="fas fa-book-open"></i>Books
-            </a>
+            <%= link_to "/books", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-book-open") %> Books
+            <% end %>
           </li>
           <li>
-            <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
-              <i class="fas fa-sign-out-alt"></i>Log out
-            </a>
+            <%= link_to "/users/sign_out", class: "nav-link text-light", rel: "nofollow", data: { method: "delete" } do %>
+              <%= content_tag(:i, "", class: "fas fa-sign-out-alt") %> Log out
+            <% end %>
           </li>
           <% else %>
           
           <li>
-            <a class="nav-link text-light" href="/"> <i class="fas fa-home"></i>Home</a>
+            <%= link_to "/", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-home") %> Home
+            <% end %>
           </li>
           
           <li>
-            <a class="nav-link text-light" href="/home/about"><i class="fas fa-link"></i>About</a>
+            <%= link_to "/home/about", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-link") %> About
+            <% end %>
           </li>
           
           <li>
-            <a class="nav-link text-light" href="/users/sign_up"><i class="fas fa-user-plus"></i>Sign up</a>
+            <%= link_to "/users/sign_up", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-user-plus") %> Sign up
+            <% end %>
           </li>
           
           <li>
-            <a class="nav-link text-light" href="/users/sign_in"><i class="fas fa-sign-in-alt"></i>Log in</a>
+            <%= link_to "/users/sign_in", class: "nav-link text-light" do %>
+              <%= content_tag(:i, "", class: "fas fa-sign-in-alt") %> Log in
+            <% end %>
           </li>
         <% end %>  
         </ul>

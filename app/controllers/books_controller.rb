@@ -9,6 +9,7 @@ class BooksController < ApplicationController
       redirect_to book_path(@book)
     else
       @books = Book.all
+      @user = current_user
       flash.now[:alert] = @book.errors.full_messages.join(", ")
       render :index
     end
@@ -51,7 +52,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
-    @user = current_user
+    @user = @book.user
   end
   
   def edit
